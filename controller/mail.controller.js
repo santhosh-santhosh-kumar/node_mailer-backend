@@ -15,12 +15,14 @@ const sendEmail=({name,mobile})=>{
                   user: `${process.env.EMAIL}`,
                   pass: `${process.env.PASSWORD}`
                 },
+                logger: true, 
+                debug: true
               });
             
               async function main() {
                 const info = await transporter.sendMail({
-                  from: 'hrkonceptsdandd@gmail.com', 
-                  to: "hrkonceptsdandd@gmail.com", 
+                  from: `${process.env.EMAIL}`, 
+                  to: `${process.env.EMAIL}`, 
                   subject: "Hello ✔", 
                   text: "Hello world?",
                   html: `${name},${mobile}`, 
@@ -44,7 +46,7 @@ const sendEmail=({name,mobile})=>{
     ).catch(err=>{
         res.status(500).send(err.message)
     })
-    res.send('posted')
+    res.send(req.query)
     }
 
 module.exports={
